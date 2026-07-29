@@ -1,68 +1,52 @@
 [
   {
+    "slug": "cave-painting-13000-years",
     "date": "2026-07-29",
-    "category_bn": "পরিবেশবার্তা",
-    "category_en": "Environment",
-    "title_bn": "সুন্দরবনে ৫ বছরে বাঘের সংখ্যা বেড়ে দাঁড়াল ১২৫টি",
-    "title_en": "Sundarbans tiger count rises to 125 in five years",
-    "excerpt_bn": "বন বিভাগের সর্বশেষ শুমারিতে জানা গেছে, সংরক্ষণ প্রকল্পের সুফলে সুন্দরবনে রয়েল বেঙ্গল টাইগারের সংখ্যা উল্লেখযোগ্যভাবে বেড়েছে।",
-    "excerpt_en": "The latest forest department census shows a meaningful rise in Royal Bengal Tiger numbers, credited to sustained conservation efforts.",
-    "source_label": "Bangladesh Forest Department",
-    "source_url": "#"
+    "category_bn": "আবিষ্কারবার্তা",
+    "category_en": "Discovery",
+    "category_key": "abiskarbarta",
+    "title_bn": "গুহার দেয়ালে লুকানো কয়লা বলে দিল ছবির বয়স — ১৩,০০০ বছর!",
+    "title_en": "Hidden Charcoal Reveals Cave Painting Is 13,000 Years Old",
+    "excerpt_bn": "ফ্রান্সের ফোঁ-দ্য-গোম গুহায় বাইসন চিত্রের প্রথমবার সঠিক বয়স নির্ধারণ।",
+    "excerpt_en": "Scientists precisely date Ice Age bison artwork in France's Font-de-Gaume cave for the first time.",
+    "body_bn": "শত বছর ধরে ধারণা ছিল, ফ্রান্সের ফোঁ-দ্য-গোম গুহার কালো চিত্রগুলো তৈরি শুধু খনিজ রং দিয়ে — যা দিয়ে বয়স নির্ণয় করা অসম্ভব। এবার সেই ধারণা ভাঙল বিজ্ঞান।\n\nগবেষকরা রামান মাইক্রোস্পেক্ট্রোমেট্রি ও হাইপারস্পেক্ট্রাল ইমেজিং ব্যবহার করে আবিষ্কার করেন, একটি বাইসন ও একটি মুখোশসদৃশ চিত্রের কালো রঙে লুকিয়ে আছে কাঠকয়লার সূক্ষ্ম অংশ। এই কার্বনের সন্ধান পেয়েই প্রথমবারের মতো সম্ভব হলো রেডিওকার্বন পদ্ধতিতে সঠিক বয়স নির্ণয় — বাইসনের চিত্রটি প্রায় ১৩,০০০ বছর আগের, বরফ যুগের শেষ দিকের।\n\nগবেষণাটি প্রকাশিত হয়েছে বিশ্বখ্যাত বিজ্ঞান জার্নাল PNAS-এ। এতদিন যা কেবল শৈলীর ভিত্তিতে অনুমান করা হতো, এখন তার প্রথম সরাসরি বৈজ্ঞানিক প্রমাণ মিলল — মানবসভ্যতার শিল্পের ইতিহাসে এক গুরুত্বপূর্ণ পাতা যোগ হলো।",
+    "body_en": "For over a century, experts believed the black paintings inside France's Font-de-Gaume cave were made purely from mineral pigment — impossible to date directly. That assumption has just been overturned.\n\nUsing Raman microspectrometry and hyperspectral imaging, researchers discovered traces of charcoal hidden inside the black pigment of a bison painting and a mask-like figure. That hidden carbon made radiocarbon dating possible for the first time — placing the bison artwork at roughly 13,000 years old, from the tail end of the Ice Age.\n\nPublished in the journal PNAS, the study offers the first direct scientific proof of what had only ever been estimated by artistic style — adding a confirmed page to the story of humanity's earliest art.",
+    "source_label": "ScienceDaily",
+    "source_url": "https://www.sciencedaily.com/releases/2026/07/260727214619.htm",
+    "hashtags": [
+      "#মঙ্গলবার্তা",
+      "#MongolBarta",
+      "#আবিষ্কারবার্তা",
+      "#Discovery",
+      "#GoodNewsBD",
+      "#CaveArt",
+      "#France"
+    ],
+    "image": "assets/images/cave-painting-13000-years.jpg"
   },
   {
+    "slug": "cheetahs-return-zambia",
     "date": "2026-07-28",
-    "category_bn": "সাহসবার্তা",
-    "category_en": "Bravery",
-    "title_bn": "নদীতে ডুবে যাওয়া তিন শিশুকে বাঁচালেন কিশোর জেলে",
-    "title_en": "Teen fisherman saves three drowning children",
-    "excerpt_bn": "পদ্মায় নৌকা উল্টে যাওয়া তিন শিশুকে তীরে টেনে তোলেন ১৬ বছর বয়সী জেলে বালক, যাকে স্থানীয় প্রশাসন সংবর্ধনা দিয়েছে।",
-    "excerpt_en": "A 16-year-old fisherman pulled three children to safety after their boat capsized on the Padma; local authorities honored him.",
-    "source_label": "Prothom Alo",
-    "source_url": "#"
-  },
-  {
-    "date": "2026-07-27",
-    "category_bn": "বিজ্ঞানবার্তা",
-    "category_en": "Science",
-    "title_bn": "ঢাকা বিশ্ববিদ্যালয়ের গবেষকদের নতুন ধানের জাত আবিষ্কার",
-    "title_en": "Dhaka University researchers develop new rice variety",
-    "excerpt_bn": "লবণাক্ততা সহনশীল নতুন এই ধানের জাত উপকূলীয় এলাকার কৃষকদের ফলন বাড়াতে সাহায্য করবে বলে আশা গবেষকদের।",
-    "excerpt_en": "The new salt-tolerant rice variety is expected to boost yields for farmers across coastal regions.",
-    "source_label": "The Daily Star",
-    "source_url": "#"
-  },
-  {
-    "date": "2026-07-26",
-    "category_bn": "শিক্ষাবার্তা",
-    "category_en": "Education",
-    "title_bn": "পাহাড়ি গ্রামে বিনামূল্যে স্কুল চালু করলেন প্রাক্তন শিক্ষার্থী",
-    "title_en": "Former student opens free school in hill village",
-    "excerpt_bn": "নিজের গ্রামে ফিরে গিয়ে ৪০ জন শিশুর জন্য বিনামূল্যে পাঠশালা চালু করেছেন একজন তরুণ, যেখানে বই ও খাবারও দেওয়া হয়।",
-    "excerpt_en": "A young graduate returned to his home village to open a free school for 40 children, providing books and meals too.",
-    "source_label": "BSS News",
-    "source_url": "#"
-  },
-  {
-    "date": "2026-07-25",
-    "category_bn": "স্বাস্থ্যবার্তা",
-    "category_en": "Health",
-    "title_bn": "গ্রামীণ ক্লিনিকে বিনামূল্যে চোখের ছানি অস্ত্রোপচার শিবির",
-    "title_en": "Free cataract surgery camp reaches rural clinic",
-    "excerpt_bn": "একটি স্বেচ্ছাসেবী চিকিৎসক দল সপ্তাহব্যাপী শিবিরে ৩০০ জনেরও বেশি রোগীর বিনামূল্যে ছানি অস্ত্রোপচার করেছে।",
-    "excerpt_en": "A volunteer medical team performed free cataract surgery for over 300 patients during a week-long camp.",
-    "source_label": "UNB",
-    "source_url": "#"
-  },
-  {
-    "date": "2026-07-24",
-    "category_bn": "দয়াবার্তা",
-    "category_en": "Kindness",
-    "title_bn": "রিকশাচালকদের জন্য বিনামূল্যে পানির স্টেশন চালু করলেন প্রতিবেশীরা",
-    "title_en": "Neighbors set up free water stations for rickshaw pullers",
-    "excerpt_bn": "গরমের মধ্যে পরিশ্রমী রিকশাচালকদের কথা ভেবে একটি মহল্লার বাসিন্দারা মিলে রাস্তার মোড়ে বিনামূল্যে পানির ব্যবস্থা করেছেন।",
-    "excerpt_en": "Residents of one neighborhood set up free roadside water stations for hardworking rickshaw pullers during the heat.",
-    "source_label": "Community report",
-    "source_url": "#"
+    "category_bn": "সবুজবার্তা",
+    "category_en": "Earth Wins",
+    "category_key": "sobujbarta",
+    "title_bn": "৩০ বছর পর জাম্বিয়ার জঙ্গলে ফিরল চিতা",
+    "title_en": "Cheetahs Return to Zambia After 30 Years",
+    "excerpt_bn": "দক্ষিণ আফ্রিকা থেকে ছয়টি চিতা এনে শুরু হলো ঐতিহাসিক পুনর্বাসন কর্মসূচি।",
+    "excerpt_en": "Six cheetahs relocated from South Africa launch historic rewilding effort in Luangwa.",
+    "body_bn": "প্রায় ৩০ বছর পর জাম্বিয়ার গ্রেটার লুয়াংওয়া ইকোসিস্টেমে আবার দেখা মিলল চিতার — ১৯৯৮ সালের পর এই প্রথম।\n\nদক্ষিণ আফ্রিকার সংরক্ষিত মেটাপপুলেশন থেকে তিনটি পুরুষ ও তিনটি স্ত্রী চিতা স্থানান্তর করা হয়েছে জাম্বিয়ার নর্থ লুয়াংওয়া জাতীয় উদ্যানে। জাম্বিয়ার বন্যপ্রাণী বিভাগ ও এনডেঞ্জারড ওয়াইল্ডলাইফ ট্রাস্টসহ আন্তর্জাতিক সংগঠনগুলোর এক দশকেরও বেশি সময়ের পরিকল্পনার ফল এই প্রকল্প। নতুন পরিবেশে মানিয়ে নিতে চিতাগুলোকে প্রথমে ২,০০০ হেক্টরের একটি নিরাপদ অভয়ারণ্যে রাখা হচ্ছে, প্রতিটির গায়ে বসানো হয়েছে স্যাটেলাইট ট্র্যাকিং কলার।\n\nআগস্টে আরও ছয়টি চিতা এবং ২০২৭ সালে তৃতীয় দলটি যুক্ত হবে এই প্রকল্পে — লক্ষ্য, লুয়াংওয়ায় একটি স্থায়ী ও স্বনির্ভর চিতার প্রজন্ম গড়ে তোলা।",
+    "body_en": "For the first time since 1998, cheetahs are back in Zambia's Greater Luangwa Ecosystem — nearly 30 years after they vanished from the landscape.\n\nThree male and three female cheetahs were translocated from South Africa's managed cheetah metapopulation to North Luangwa National Park, the result of more than a decade of planning by Zambia's Department of National Parks and Wildlife alongside the Endangered Wildlife Trust and international partners. The cheetahs are acclimatizing in a 2,000-hectare predator-proof sanctuary, each fitted with a satellite tracking collar, before full release into the wild.\n\nSix more cheetahs are expected in August, with a third group following in 2027 — the goal being a self-sustaining wild population in Luangwa once again.",
+    "source_label": "Mongabay",
+    "source_url": "https://news.mongabay.com/short-article/2026/07/cheetahs-reintroduced-to-zambias-greater-luangwa-ecosystem/",
+    "hashtags": [
+      "#মঙ্গলবার্তা",
+      "#MongolBarta",
+      "#সবুজবার্তা",
+      "#EarthWins",
+      "#GoodNewsBD",
+      "#Zambia",
+      "#Cheetah"
+    ],
+    "image": "assets/images/cheetahs-return-zambia.jpg"
   }
 ]
