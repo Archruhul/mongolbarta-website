@@ -181,8 +181,27 @@ header.site-header {
   font-size: 0.85rem;
   font-weight: 600;
   padding: 7px 16px;
+  border: 1.5px solid transparent;
   border-radius: 999px;
   white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.pillar-chip:hover {
+  border-color: var(--forest-light);
+}
+
+.pillar-chip.active {
+  background: var(--gradient-brand);
+  color: #fff;
+}
+
+.feed-empty {
+  text-align: center;
+  color: var(--ink-soft);
+  padding: 20px 0;
+  font-family: var(--font-bn-body);
 }
 
 /* ---------- Feed ---------- */

@@ -12,9 +12,26 @@ function formatDate(iso) {
   };
 }
 
+let ALL_POSTS = [];
+let ACTIVE_CATEGORY = "all";
+
 function renderPosts(posts) {
   const feed = document.getElementById("feed");
-  feed.innerHTML = posts.map(p => {
+
+  const filtered = ACTIVE_CATEGORY === "all"
+    ? posts
+    : posts.filter(p => p.category_en === ACTIVE_CATEGORY);
+
+  if (filtered.length === 0) {
+    feed.innerHTML = `
+      <p class="feed-empty">
+        <span class="bn">এই বিভাগে এখনো কোনো খবর নেই।</span>
+        <span class="en">No stories in this category yet.</span>
+      </p>`;
+    return;
+  }
+
+  feed.innerHTML = filtered.map(p => {
     const dt = formatDate(p.date);
     return `
       <article class="post">
@@ -28,6 +45,14 @@ function renderPosts(posts) {
       </article>
     `;
   }).join("");
+}
+
+function setCategory(category) {
+  ACTIVE_CATEGORY = category;
+  document.querySelectorAll(".pillar-chip").forEach(chip => {
+    chip.classList.toggle("active", chip.dataset.category === category);
+  });
+  renderPosts(ALL_POSTS);
 }
 
 function setLang(lang) {
@@ -47,11 +72,16 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => setLang(btn.dataset.lang));
   });
 
+  document.querySelectorAll(".pillar-chip").forEach(chip => {
+    chip.addEventListener("click", () => setCategory(chip.dataset.category));
+  });
+
   fetch("posts.json")
     .then(res => res.json())
     .then(posts => {
       posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-      renderPosts(posts);
+      ALL_POSTS = posts;
+      renderPosts(ALL_POSTS);
     })
     .catch(() => {
       document.getElementById("feed").innerHTML =
