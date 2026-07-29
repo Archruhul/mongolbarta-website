@@ -1,0 +1,10 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="মঙ্গল বার্তা logo">
+  <defs>
+    <linearGradient id="planeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B4332"/>
+      <stop offset="100%" stop-color="#F0A93D"/>
+    </linearGradient>
+  </defs>
+  <path d="M6 34 L58 8 L38 58 L30 38 L6 34Z" fill="url(#planeGrad)"/>
+  <path d="M30 38 L58 8 L20 44 Z" fill="#ffffff" fill-opacity="0.18"/>
+</svg>

@@ -1,0 +1,341 @@
+/* ============================================
+   মঙ্গল বার্তা (MongolBarta) — Design tokens
+   ============================================ */
+:root {
+  --paper: #FBF7EE;
+  --paper-dim: #F3EEE0;
+  --ink: #201E1A;
+  --ink-soft: #55524A;
+  --forest: #1B4332;
+  --forest-light: #2D6A4F;
+  --amber: #F0A93D;
+  --amber-deep: #D98B2B;
+  --sage: #E7EFE4;
+  --trail: #C9DED0;
+  --card-border: #E4DFD2;
+
+  --font-bn-display: 'Hind Siliguri', sans-serif;
+  --font-bn-body: 'Noto Sans Bengali', sans-serif;
+  --font-en-display: 'Fraunces', serif;
+  --font-en-body: 'Work Sans', sans-serif;
+
+  --radius: 18px;
+  --gradient-brand: linear-gradient(135deg, var(--forest) 0%, var(--amber) 100%);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-bn-body), var(--font-en-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+body[data-lang="en"] .bn { display: none; }
+body[data-lang="bn"] .en { display: none; }
+body:not([data-lang]) .en { display: none; }
+
+img, svg { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Header ---------- */
+header.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(251, 247, 238, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand img { width: 34px; height: 34px; }
+
+.brand-word {
+  font-family: var(--font-bn-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--forest);
+}
+
+.lang-toggle {
+  display: flex;
+  border: 1.5px solid var(--forest);
+  border-radius: 999px;
+  overflow: hidden;
+  font-family: var(--font-en-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.lang-toggle button {
+  border: none;
+  background: transparent;
+  padding: 6px 14px;
+  cursor: pointer;
+  color: var(--forest);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.lang-toggle button.active {
+  background: var(--forest);
+  color: var(--paper);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 64px 0 40px;
+  text-align: center;
+  position: relative;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-family: var(--font-en-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--amber-deep);
+  letter-spacing: 0.03em;
+  margin-bottom: 14px;
+}
+
+.hero h1 {
+  font-family: var(--font-bn-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 6vw, 3rem);
+  line-height: 1.25;
+  color: var(--forest);
+  margin: 0 0 16px;
+}
+
+.hero p.sub {
+  font-family: var(--font-en-body);
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.hero-plane {
+  width: 46px;
+  height: 46px;
+  margin: 28px auto 0;
+  animation: float 3.5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-8px) rotate(4deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-plane { animation: none; }
+}
+
+/* ---------- Pillars strip ---------- */
+.pillars {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px 24px 28px;
+  max-width: 900px;
+  margin: 0 auto;
+  scrollbar-width: none;
+}
+.pillars::-webkit-scrollbar { display: none; }
+
+.pillar-chip {
+  flex: 0 0 auto;
+  background: var(--sage);
+  color: var(--forest);
+  font-family: var(--font-bn-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ---------- Feed ---------- */
+.feed-section {
+  padding: 24px 0 80px;
+}
+
+.feed-heading {
+  font-family: var(--font-en-display);
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.feed {
+  position: relative;
+  padding-left: 56px;
+}
+
+.feed::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 8px;
+  bottom: 8px;
+  width: 0;
+  border-left: 2px dashed var(--trail);
+}
+
+.post {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 22px;
+}
+
+.post::before {
+  content: "";
+  position: absolute;
+  left: -45px;
+  top: 24px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  border: 3px solid var(--paper);
+  box-shadow: 0 0 0 1.5px var(--trail);
+}
+
+.post-date {
+  font-family: var(--font-en-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--amber-deep);
+  margin-bottom: 6px;
+}
+
+.post-category {
+  display: inline-block;
+  font-family: var(--font-bn-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--forest);
+  background: var(--sage);
+  border-radius: 999px;
+  padding: 3px 11px;
+  margin-bottom: 10px;
+}
+
+.post h2 {
+  font-family: var(--font-bn-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+.post p.excerpt {
+  margin: 0 0 10px;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.post .source {
+  font-family: var(--font-en-body);
+  font-size: 0.78rem;
+  color: var(--forest-light);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.post .source:hover { text-decoration: underline; }
+
+/* ---------- Footer ---------- */
+footer {
+  background: var(--forest);
+  color: var(--paper);
+  padding: 40px 0;
+}
+
+.footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+footer .brand-word { color: var(--paper); }
+
+footer p {
+  color: #D7E3DA;
+  font-size: 0.9rem;
+  max-width: 420px;
+  margin: 0;
+}
+
+.social-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.social-row a {
+  font-family: var(--font-en-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.social-row a:hover { border-bottom-color: var(--amber); }
+
+/* ---------- Focus states ---------- */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--amber-deep);
+  outline-offset: 2px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+  .feed { padding-left: 42px; }
+  .feed::before { left: 16px; }
+  .post::before { left: -34px; }
+  .hero { padding: 48px 0 30px; }
+}
