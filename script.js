@@ -3,21 +3,35 @@
 const MONTHS_BN = ["জানু", "ফেব্রু", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্ট", "অক্টো", "নভে", "ডিসে"];
 const MONTHS_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-// A small fixed palette so any category (present or future) gets a
-// consistent, pleasant color without hardcoding category names.
-const CATEGORY_PALETTE = [
-  { bg: "#E7EFE4", fg: "#1B4332" }, // sage / forest
-  { bg: "#DCEAF2", fg: "#2C5F7C" }, // sky blue
-  { bg: "#F5E3CC", fg: "#B0651F" }, // warm amber
-  { bg: "#F0E0E6", fg: "#8C3A56" }, // muted rose
-  { bg: "#E4E1F2", fg: "#4B3B8C" }, // soft violet
-  { bg: "#DDEDE3", fg: "#2A6E52" }  // teal green
+// The 11 official content pillars, in their fixed display order, with
+// each pillar's real brand accent color. Any category_key not found
+// here (a future addition) falls back to the neutral palette below.
+const PILLARS = [
+  { key: "sobujbarta",      bn: "সবুজবার্তা",    en: "Earth Wins",      bg: "#E7EFE4", fg: "#1B4332" },
+  { key: "sahoshbarta",     bn: "সাহসবার্তা",    en: "Acts of Courage", bg: "#F7E1D8", fg: "#B4502A" },
+  { key: "abiskarbarta",    bn: "আবিষ্কারবার্তা", en: "Discovery",       bg: "#DCEAF2", fg: "#2C5F7C" },
+  { key: "nayabarta",       bn: "ন্যায়বার্তা",    en: "Justice Wins",    bg: "#E7E1F2", fg: "#5B3A8C" },
+  { key: "joybarta",        bn: "জয়বার্তা",      en: "Game Wins",       bg: "#FBEFD0", fg: "#96741A" },
+  { key: "somriddhibarta",  bn: "সমৃদ্ধিবার্তা",  en: "Growth Wins",     bg: "#DCF0EC", fg: "#1F6F63" },
+  { key: "surbarta",        bn: "সুরবার্তা",      en: "Culture Corner",  bg: "#FBE1E4", fg: "#B23A55" },
+  { key: "sushtabarta",     bn: "সুস্থবার্তা",    en: "Health Wins",     bg: "#E1F5EC", fg: "#1F7A56" },
+  { key: "shikkhabarta",    bn: "শিক্ষাবার্তা",   en: "Learning Wins",   bg: "#FAF0CE", fg: "#8A6D12" },
+  { key: "hridoybarta",     bn: "হৃদয়বার্তা",     en: "Small Kindness",  bg: "#F7E3E7", fg: "#A64960" },
+  { key: "jonobarta",       bn: "জনবার্তা",       en: "Civic Wins",      bg: "#E3E7F2", fg: "#3E4F7A" }
+];
+
+const FALLBACK_PALETTE = [
+  { bg: "#E7EFE4", fg: "#1B4332" },
+  { bg: "#DCEAF2", fg: "#2C5F7C" },
+  { bg: "#F5E3CC", fg: "#B0651F" }
 ];
 
 function colorForCategory(key) {
+  const known = PILLARS.find(p => p.key === key);
+  if (known) return { bg: known.bg, fg: known.fg };
   let hash = 0;
   for (let i = 0; i < key.length; i++) hash = (hash * 31 + key.charCodeAt(i)) >>> 0;
-  return CATEGORY_PALETTE[hash % CATEGORY_PALETTE.length];
+  return FALLBACK_PALETTE[hash % FALLBACK_PALETTE.length];
 }
 
 function formatDate(iso) {
@@ -55,20 +69,25 @@ function buildPillars(posts) {
   const nav = document.getElementById("pillars");
   if (!nav) return;
 
-  const seen = new Map();
+  // Start with the 11 official pillars, always shown regardless of
+  // whether a post exists yet in that category.
+  const list = PILLARS.map(p => ({ key: p.key, bn: p.bn, en: p.en }));
+
+  // Add any category found in the data that isn't one of the 11
+  // (future-proofing for a new pillar added later).
   posts.forEach(p => {
-    if (!seen.has(p.category_key)) {
-      seen.set(p.category_key, { bn: p.category_bn, en: p.category_en });
+    if (!list.some(l => l.key === p.category_key)) {
+      list.push({ key: p.category_key, bn: p.category_bn, en: p.category_en });
     }
   });
 
-  seen.forEach((labels, key) => {
+  list.forEach(labels => {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "pillar-chip";
-    btn.dataset.category = key;
+    btn.dataset.category = labels.key;
     btn.innerHTML = `<span class="bn">${labels.bn}</span><span class="en">${labels.en}</span>`;
-    btn.addEventListener("click", () => setCategory(key));
+    btn.addEventListener("click", () => setCategory(labels.key));
     nav.appendChild(btn);
   });
 
@@ -99,7 +118,8 @@ function renderFeed() {
     return `
       <a class="post" href="post.html?slug=${encodeURIComponent(p.slug)}">
         <div class="post-media">
-          <img src="${p.image}" alt="" loading="lazy">
+          <img class="bn" src="${p.image_bn}" alt="" loading="lazy">
+          <img class="en" src="${p.image_en}" alt="" loading="lazy">
         </div>
         <div class="post-body">
           <div class="post-date"><span class="bn">${dt.bn}</span><span class="en">${dt.en}</span></div>
@@ -172,7 +192,10 @@ function initDetail() {
       const bodyEn = p.body_en.split("\n\n").map(para => `<p>${para}</p>`).join("");
 
       root.innerHTML = `
-        <div class="detail-media"><img src="${p.image}" alt=""></div>
+        <div class="detail-media">
+          <img class="bn" src="${p.image_bn}" alt="">
+          <img class="en" src="${p.image_en}" alt="">
+        </div>
         <div class="detail-date"><span class="bn">${dt.bn}</span><span class="en">${dt.en}</span></div>
         <div class="detail-category">
           <span style="background:${c.bg};color:${c.fg}">

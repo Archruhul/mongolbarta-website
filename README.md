@@ -30,15 +30,16 @@ Open `posts.json` and add a new object, following this shape:
   "source_label": "Source name",
   "source_url": "https://...",
   "hashtags": ["#মঙ্গলবার্তা", "#MongolBarta"],
-  "image": "assets/images/unique-short-id-no-spaces.jpg"
+  "image_bn": "assets/images/unique-short-id-no-spaces-bn.jpg",
+  "image_en": "assets/images/unique-short-id-no-spaces-en.jpg"
 }
 ```
 
 **Category tabs update automatically** — whatever `category_key` values appear in your posts, matching tabs appear on the homepage. No need to edit the code for new categories.
 
-**Images:** drop your photo card into `assets/images/` with a filename matching what you put in `"image"`. Portrait (9:16-ish) works best with the current card layout — if your cards are a different ratio, tell Claude and the CSS can be adjusted.
+**Images:** each story needs **two** photo cards — your Bangla card and your English card (same artwork, different text baked in) — matching your existing Nano Banana workflow. Drop both into `assets/images/`, named to match the `"image_bn"` / `"image_en"` paths above. The site automatically shows the Bangla card when the visitor is in বাংলা mode and the English card in EN mode. Portrait cards (roughly 9:16) work best with the current layout.
 
-**Clicking a headline** on the homepage takes the reader to `post.html?slug=your-slug`, which shows the full image, full story text, source button, and hashtags.
+**Clicking a headline** on the homepage takes the reader to `post.html?slug=your-slug`, which shows the full-size matching-language image, full story text, source button, and hashtags.
 
 
 ## Deploy — Option A: No GitHub, drag & drop (fastest)

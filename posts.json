@@ -22,7 +22,8 @@
       "#CaveArt",
       "#France"
     ],
-    "image": "assets/images/cave-painting-13000-years.jpg"
+    "image_bn": "assets/images/cave-painting-13000-years-bn.jpg",
+    "image_en": "assets/images/cave-painting-13000-years-en.jpg"
   },
   {
     "slug": "cheetahs-return-zambia",
@@ -47,6 +48,32 @@
       "#Zambia",
       "#Cheetah"
     ],
-    "image": "assets/images/cheetahs-return-zambia.jpg"
+    "image_bn": "assets/images/cheetahs-return-zambia-bn.jpg",
+    "image_en": "assets/images/cheetahs-return-zambia-en.jpg"
+  },
+  {
+    "slug": "teen-lifeguard-saves-five",
+    "date": "2026-07-30",
+    "category_bn": "সাহসবার্তা",
+    "category_en": "Acts of Courage",
+    "category_key": "sahoshbarta",
+    "title_bn": "এক দিনে ৫টি প্রাণ বাঁচালেন কিশোর লাইফগার্ড",
+    "title_en": "Teen Lifeguard Saves 5 Lives in a Single Day",
+    "excerpt_bn": "ক্যালিফোর্নিয়ার উত্তাল ঢেউয়ে ঝাঁপ দিয়ে ডুবন্ত বালককে বাঁচালেন ১৬ বছরের রাইডার।",
+    "excerpt_en": "16-year-old Ryder dove into California's massive surf to rescue a drowning boy.",
+    "body_bn": "ক্যালিফোর্নিয়ার সান্তা ক্রুজের সিব্রাইট বিচে হঠাৎ উত্তাল ঢেউয়ে তলিয়ে যাচ্ছিল ১০ বছরের এক বালক। কেউ কিছু বোঝার আগেই পানিতে ঝাঁপ দেন ১৬ বছরের লাইফগার্ড রাইডার উইলিয়ামস।\n\nপ্রত্যক্ষদর্শীদের মতে, ঢেউয়ের তীব্রতা ছিল অস্বাভাবিক রকম ভয়ংকর — তবু রাইডার হাল ছাড়েননি, বালককে নিরাপদে তীরে ফিরিয়ে আনেন। প্যারামেডিকরা পরীক্ষা করে জানান, ছেলেটি সম্পূর্ণ সুস্থ, এবং পরিবারের কাছে নিরাপদে ফিরে যায়।\n\nপরিবারের ভাষ্যমতে, এই একটি উদ্ধারই শেষ নয় — সেই শনিবারেই রাইডার মোট পাঁচটি প্রাণ বাঁচিয়েছেন। একজন কিশোরের সাহস আর দায়িত্ববোধ কীভাবে একটি দিনে এতগুলো পরিবারকে স্বস্তি দিতে পারে, এই ঘটনা তারই উদাহরণ।",
+    "body_en": "At Seabright Beach in Santa Cruz, California, a 10-year-old boy was suddenly pulled into dangerous surf. Before anyone could react, 16-year-old lifeguard Ryder Williams dove straight into the waves.\n\nWitnesses described the surf as unusually violent that day — but Ryder didn't let go, bringing the boy safely back to shore. Paramedics evaluated him and confirmed he was fine before he was reunited with his family.\n\nAccording to his family, that rescue wasn't the only one — Ryder completed five total saves that same Saturday. A reminder of how much difference one teenager's courage and quick thinking can make in a single day.",
+    "source_label": "ABC News",
+    "source_url": "https://abcnews.com/US/wireStory/california-lifeguard-hailed-hero-after-rescuing-boy-pounding-135169097",
+    "hashtags": [
+      "#মঙ্গলবার্তা",
+      "#MongolBarta",
+      "#সাহসবার্তা",
+      "#ActsOfCourage",
+      "#GoodNewsBD",
+      "#California"
+    ],
+    "image_bn": "assets/images/teen-lifeguard-saves-five-bn.jpg",
+    "image_en": "assets/images/teen-lifeguard-saves-five-en.jpg"
   }
 ]
