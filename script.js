@@ -43,6 +43,43 @@ function formatDate(iso) {
   };
 }
 
+const DAYS_BN = ["রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার", "শুক্রবার", "শনিবার"];
+const DAYS_EN = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const BN_DIGITS = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+
+function toBanglaNumber(n) {
+  return String(n).split("").map(ch => (/[0-9]/.test(ch) ? BN_DIGITS[+ch] : ch)).join("");
+}
+
+// Approximate six-season (ঋতু) mapping by Gregorian month/day.
+function seasonFor(date) {
+  const m = date.getMonth() + 1; // 1-12
+  const d = date.getDate();
+  const md = m + d / 100;
+  if (md >= 4.15 && md < 6.15) return { bn: "গ্রীষ্ম", en: "Summer" };
+  if (md >= 6.15 && md < 8.15) return { bn: "বর্ষা", en: "Monsoon" };
+  if (md >= 8.15 && md < 10.15) return { bn: "শরৎ", en: "Autumn" };
+  if (md >= 10.15 && md < 12.15) return { bn: "হেমন্ত", en: "Late Autumn" };
+  if (md >= 12.15 || md < 2.15) return { bn: "শীত", en: "Winter" };
+  return { bn: "বসন্ত", en: "Spring" };
+}
+
+function renderTodayInfo() {
+  const el = document.getElementById("today-info");
+  if (!el) return;
+  const now = new Date();
+  const day = now.getDate();
+  const monthIdx = now.getMonth();
+  const year = now.getFullYear();
+  const dayName = { bn: DAYS_BN[now.getDay()], en: DAYS_EN[now.getDay()] };
+  const season = seasonFor(now);
+
+  el.innerHTML = `
+    <span class="bn">${dayName.bn}, ${toBanglaNumber(day)} ${MONTHS_BN[monthIdx]} ${toBanglaNumber(year)} · ${season.bn}</span>
+    <span class="en">${dayName.en}, ${MONTHS_EN[monthIdx]} ${day}, ${year} · ${season.en}</span>
+  `;
+}
+
 function setLang(lang) {
   document.body.setAttribute("data-lang", lang);
   document.documentElement.lang = lang === "bn" ? "bn" : "en";
@@ -64,6 +101,7 @@ function initLangToggle() {
 
 let ALL_POSTS = [];
 let ACTIVE_CATEGORY = "all";
+let SEARCH_QUERY = "";
 
 function buildPillars(posts) {
   const nav = document.getElementById("pillars");
@@ -95,19 +133,29 @@ function buildPillars(posts) {
   if (allBtn) allBtn.addEventListener("click", () => setCategory("all"));
 }
 
+function matchesSearch(p, q) {
+  if (!q) return true;
+  const haystack = [
+    p.title_bn, p.title_en, p.excerpt_bn, p.excerpt_en, p.category_bn, p.category_en
+  ].join(" ").toLowerCase();
+  return haystack.includes(q.toLowerCase());
+}
+
 function renderFeed() {
   const feed = document.getElementById("feed");
   if (!feed) return;
 
-  const filtered = ACTIVE_CATEGORY === "all"
+  let filtered = ACTIVE_CATEGORY === "all"
     ? ALL_POSTS
     : ALL_POSTS.filter(p => p.category_key === ACTIVE_CATEGORY);
+
+  filtered = filtered.filter(p => matchesSearch(p, SEARCH_QUERY));
 
   if (filtered.length === 0) {
     feed.innerHTML = `
       <p class="feed-empty">
-        <span class="bn">এই বিভাগে এখনো কোনো খবর নেই।</span>
-        <span class="en">No stories in this category yet.</span>
+        <span class="bn">কোনো খবর পাওয়া যায়নি।</span>
+        <span class="en">No stories found.</span>
       </p>`;
     return;
   }
@@ -222,8 +270,19 @@ function initDetail() {
     });
 }
 
+function initSearch() {
+  const input = document.getElementById("search-input");
+  if (!input) return;
+  input.addEventListener("input", () => {
+    SEARCH_QUERY = input.value.trim();
+    renderFeed();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initLangToggle();
+  renderTodayInfo();
+  initSearch();
   initFeed();
   initDetail();
 });

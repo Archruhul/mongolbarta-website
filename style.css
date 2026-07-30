@@ -166,6 +166,59 @@ header.site-header {
   .hero-plane { animation: none; }
 }
 
+/* ---------- Date bar + search ---------- */
+.date-search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 10px 24px 6px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.today-info {
+  font-family: var(--font-en-body);
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.today-info .bn { font-family: var(--font-bn-body); }
+
+.search-box {
+  flex: 1 1 220px;
+  max-width: 320px;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 8px 14px 8px 34px;
+  border: 1.5px solid var(--card-border);
+  border-radius: 999px;
+  background: #fff;
+  font-family: var(--font-bn-body);
+  font-size: 0.88rem;
+  color: var(--ink);
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--forest-light);
+}
+
+.search-box::before {
+  content: "🔍";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
 /* ---------- Pillars strip ---------- */
 .pillars {
   display: flex;
@@ -200,6 +253,14 @@ header.site-header {
 .pillar-chip.active {
   background: var(--gradient-brand);
   color: #fff;
+}
+
+@media (min-width: 640px) {
+  .pillars {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: visible;
+  }
 }
 
 .feed-empty {
@@ -272,7 +333,7 @@ header.site-header {
 
 .post-media {
   width: 100%;
-  aspect-ratio: 9 / 16;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   background: var(--sage);
 }
@@ -281,7 +342,7 @@ header.site-header {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: top center;
 }
 
 .post-body {
@@ -462,6 +523,8 @@ footer p {
 
 .social-row {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
   margin-top: 6px;
 }
