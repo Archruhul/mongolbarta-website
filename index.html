@@ -36,23 +36,32 @@
       </h1>
       <p class="sub bn">পরিবেশ, সাহস, বিজ্ঞান, ন্যায়, শিক্ষা ও দয়া — প্রতিটি খবর যাচাই করে, উৎসসহ প্রকাশ করা হয়।</p>
       <p class="sub en">Environment, bravery, science, justice, education and kindness — every story verified and source-linked.</p>
-      <svg class="hero-plane" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="heroPlaneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#1B4332"/>
-            <stop offset="100%" stop-color="#F0A93D"/>
-          </linearGradient>
-        </defs>
-        <path d="M6 34 L58 8 L38 58 L30 38 L6 34Z" fill="url(#heroPlaneGrad)"/>
-      </svg>
     </div>
   </section>
 
   <div class="date-search-bar">
-    <span class="today-info" id="today-info"></span>
+    <div class="date-picker-group">
+      <button type="button" class="date-chip" id="date-chip-bn"></button>
+      <span class="date-sep">|</span>
+      <button type="button" class="date-chip" id="date-chip-en"></button>
+      <button type="button" class="date-clear hidden" id="date-clear" title="সব খবর দেখান / Show all">
+        ✕ <span class="bn">সব দেখান</span><span class="en">Show all</span>
+      </button>
+    </div>
     <div class="search-box">
       <input type="text" id="search-input" placeholder="খবর খুঁজুন / Search stories">
     </div>
+  </div>
+
+  <input type="date" id="native-date-input" class="visually-hidden-input">
+
+  <div class="bn-calendar-popup hidden" id="bn-calendar-popup">
+    <div class="bn-cal-header">
+      <button type="button" id="bn-cal-prev" aria-label="আগের মাস">‹</button>
+      <span id="bn-cal-title"></span>
+      <button type="button" id="bn-cal-next" aria-label="পরের মাস">›</button>
+    </div>
+    <div class="bn-cal-grid" id="bn-cal-grid"></div>
   </div>
 
   <nav class="pillars" id="pillars" aria-label="Categories">

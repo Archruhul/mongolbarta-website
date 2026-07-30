@@ -64,9 +64,12 @@ function seasonFor(date) {
   return { bn: "বসন্ত", en: "Spring" };
 }
 
-function renderTodayInfo() {
-  const el = document.getElementById("today-info");
-  if (!el) return;
+function todayISO() {
+  const n = new Date();
+  return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, "0")}-${String(n.getDate()).padStart(2, "0")}`;
+}
+
+function renderDateChips() {
   const now = new Date();
   const day = now.getDate();
   const monthIdx = now.getMonth();
@@ -74,10 +77,103 @@ function renderTodayInfo() {
   const dayName = { bn: DAYS_BN[now.getDay()], en: DAYS_EN[now.getDay()] };
   const season = seasonFor(now);
 
-  el.innerHTML = `
-    <span class="bn">${dayName.bn}, ${toBanglaNumber(day)} ${MONTHS_BN[monthIdx]} ${toBanglaNumber(year)} · ${season.bn}</span>
-    <span class="en">${dayName.en}, ${MONTHS_EN[monthIdx]} ${day}, ${year} · ${season.en}</span>
-  `;
+  const chipBn = document.getElementById("date-chip-bn");
+  const chipEn = document.getElementById("date-chip-en");
+  if (chipBn) chipBn.textContent = `${dayName.bn}, ${toBanglaNumber(day)} ${MONTHS_BN[monthIdx]} ${toBanglaNumber(year)} · ${season.bn}`;
+  if (chipEn) chipEn.textContent = `${dayName.en}, ${MONTHS_EN[monthIdx]} ${day}, ${year} · ${season.en}`;
+}
+
+let ACTIVE_DATE_FILTER = null;
+let calendarViewDate = new Date();
+
+function setDateFilter(iso) {
+  ACTIVE_DATE_FILTER = iso;
+  const clearBtn = document.getElementById("date-clear");
+  if (clearBtn) clearBtn.classList.remove("hidden");
+  renderFeed();
+}
+
+function clearDateFilter() {
+  ACTIVE_DATE_FILTER = null;
+  const clearBtn = document.getElementById("date-clear");
+  if (clearBtn) clearBtn.classList.add("hidden");
+  const nativeInput = document.getElementById("native-date-input");
+  if (nativeInput) nativeInput.value = "";
+  renderFeed();
+}
+
+function renderBnCalendar() {
+  const grid = document.getElementById("bn-cal-grid");
+  const title = document.getElementById("bn-cal-title");
+  if (!grid || !title) return;
+
+  const y = calendarViewDate.getFullYear();
+  const m = calendarViewDate.getMonth();
+  title.textContent = `${MONTHS_BN[m]} ${toBanglaNumber(y)}`;
+
+  const firstDay = new Date(y, m, 1);
+  const startWeekday = firstDay.getDay();
+  const daysInMonth = new Date(y, m + 1, 0).getDate();
+  const today = todayISO();
+
+  let html = ["রবি", "সোম", "মঙ্গল", "বুধ", "বৃহ", "শুক্র", "শনি"]
+    .map(d => `<span class="bn-cal-dow">${d}</span>`).join("");
+  for (let i = 0; i < startWeekday; i++) html += `<span></span>`;
+  for (let d = 1; d <= daysInMonth; d++) {
+    const iso = `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+    const isToday = iso === today ? "is-today" : "";
+    html += `<button type="button" class="bn-cal-day ${isToday}" data-date="${iso}">${toBanglaNumber(d)}</button>`;
+  }
+  grid.innerHTML = html;
+
+  grid.querySelectorAll(".bn-cal-day").forEach(btn => {
+    btn.addEventListener("click", () => {
+      setDateFilter(btn.dataset.date);
+      document.getElementById("bn-calendar-popup").classList.add("hidden");
+    });
+  });
+}
+
+function initDatePickers() {
+  renderDateChips();
+
+  const chipEn = document.getElementById("date-chip-en");
+  const nativeInput = document.getElementById("native-date-input");
+  if (chipEn && nativeInput) {
+    chipEn.addEventListener("click", () => {
+      if (nativeInput.showPicker) nativeInput.showPicker();
+      else nativeInput.focus();
+    });
+    nativeInput.addEventListener("change", () => {
+      if (nativeInput.value) setDateFilter(nativeInput.value);
+    });
+  }
+
+  const chipBn = document.getElementById("date-chip-bn");
+  const popup = document.getElementById("bn-calendar-popup");
+  if (chipBn && popup) {
+    chipBn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      popup.classList.toggle("hidden");
+      if (!popup.classList.contains("hidden")) renderBnCalendar();
+    });
+    document.addEventListener("click", (e) => {
+      if (!popup.contains(e.target) && e.target !== chipBn) popup.classList.add("hidden");
+    });
+    const prevBtn = document.getElementById("bn-cal-prev");
+    const nextBtn = document.getElementById("bn-cal-next");
+    if (prevBtn) prevBtn.addEventListener("click", () => {
+      calendarViewDate.setMonth(calendarViewDate.getMonth() - 1);
+      renderBnCalendar();
+    });
+    if (nextBtn) nextBtn.addEventListener("click", () => {
+      calendarViewDate.setMonth(calendarViewDate.getMonth() + 1);
+      renderBnCalendar();
+    });
+  }
+
+  const clearBtn = document.getElementById("date-clear");
+  if (clearBtn) clearBtn.addEventListener("click", clearDateFilter);
 }
 
 function setLang(lang) {
@@ -150,6 +246,7 @@ function renderFeed() {
     : ALL_POSTS.filter(p => p.category_key === ACTIVE_CATEGORY);
 
   filtered = filtered.filter(p => matchesSearch(p, SEARCH_QUERY));
+  filtered = filtered.filter(p => !ACTIVE_DATE_FILTER || p.date === ACTIVE_DATE_FILTER);
 
   if (filtered.length === 0) {
     feed.innerHTML = `
@@ -281,7 +378,7 @@ function initSearch() {
 
 document.addEventListener("DOMContentLoaded", () => {
   initLangToggle();
-  renderTodayInfo();
+  initDatePickers();
   initSearch();
   initFeed();
   initDetail();
